@@ -1,0 +1,13 @@
+Para activar el entorno virtual:
+    source ~/flaskenv/bin/activate
+
+Para lanzar flask: (con el entorno virtual activado y desde la carpeta /hola_flask)
+    FLASK_APP=hola_flask.py flask run --host=0.0.0.0
+
+    gunicorn -b "0.0.0.0:5000" -w 4 hola_flask:app
+
+Hemos creado un contenedor con todo el entorno virtual anterior. para lanzarlo:
+Prueba a lanzar el contenedor con:
+    docker run --rm -d -p 5050:5000 gunicornflask:1.0
+
+He llegado hasta el punto 3.5 (no incluido (por hacer) ) de la sesion 2.1
