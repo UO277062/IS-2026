@@ -8,6 +8,14 @@ Para lanzar flask: (con el entorno virtual activado y desde la carpeta /hola_fla
 
 Hemos creado un contenedor con todo el entorno virtual anterior. para lanzarlo:
 Prueba a lanzar el contenedor con:
-    docker run --rm -d -p 5050:5000 gunicornflask:1.0
+    sudo docker run --rm -d -p 5050:5000 gunicornflask:1.0
 
-He llegado hasta el punto 3.5 (no incluido (por hacer) ) de la sesion 2.1
+Lanzar el contenedor nginx:
+    sudo docker run --rm -d --network pruebas --name nginx -p 80:80 -v $(pwd)/html:/usr/share/nginx/html -v $(pwd)/sitios_nginx:/etc/nginx/conf.d nginx
+
+Para lanzar nginx desde el directorio /SESION2:
+    sudo ./arrancar_nginx_varios_puertos.sh
+
+IP de la MV: 192.168.207.129
+
+sudo docker run --name mariadb -e MYSQL_ROOT_PASSWORD=claveroot --rm --network pruebas -d mariadb
