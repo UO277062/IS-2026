@@ -1,0 +1,36 @@
+IP del contenedor basedatos: 172.18.0.2
+
+
+Activar el entorno:
+    $ source ~/flaskenv/bin/activate
+    Salida: (flaskenv) $
+
+Para lanzar: Desde el directorio /home/uo277062/IS-2026/SESION02-2/amigos
+    FLASK_APP=lanzar.py flask run -h 0.0.0.0
+
+
+IP de la MV 
+
+
+Paso 1: parar todos los contenedores de docker
+    sudo docker ps 
+    sudo docker stop id_contenedor
+
+Paso 2: Iniciar los contenedores:
+    bbdd. Ejecuta el siguiente comando desde la carpeta padre de basedatos:
+
+        $ sudo docker run --name basedatos \
+        -e MYSQL_ROOT_PASSWORD=claveroot \
+        -e MYSQL_USER=amigosuser \
+        -e MYSQL_DATABASE=amigosdb \
+        -e MYSQL_PASSWORD=amigospass \
+        -v $(pwd)/basedatos:/var/lib/mysql \
+        --rm --network pruebas -d mariadb
+
+
+Paso 3: Asegúrate de que tienes activado el entorno virtual que creamos en la sesión anterior. Si no es así, actívalo con:
+        $ source ~/flaskenv/bin/activate
+
+Paso 4: 
+    FLASK_APP=lanzar.py flask db upgrade
+    FLASK_APP=lanzar.py flask run -h 0.0.0.0
