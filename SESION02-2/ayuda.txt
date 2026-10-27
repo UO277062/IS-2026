@@ -1,5 +1,8 @@
 IP del contenedor basedatos: 172.18.0.2
 
+Si se desconfigura algo mirar el archivo: IS-2026/SESION02-2/amigos/instance/config.py
+comprobar la ip del contenedor de docker
+
 
 Activar el entorno:
     $ source ~/flaskenv/bin/activate
@@ -37,3 +40,5 @@ Paso 4:
 
 
 He llegado hasta el punto 4
+
+ahora hay que conectarse a http://192.168.207.148:5000/html/amigos
