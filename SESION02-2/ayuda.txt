@@ -42,3 +42,11 @@ Paso 4:
 He llegado hasta el punto 4
 
 ahora hay que conectarse a http://192.168.207.148:5000/html/amigos
+
+
+Despliegue despues del punto 6:
+-Para que todo funcione, hay que desplegar tres contenedores
+- Debes estar situado en /home/uo277062/IS-2026/SESION02-2
+
+Ejecutar los 3 ficheros
+
