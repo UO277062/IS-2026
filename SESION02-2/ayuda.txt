@@ -16,8 +16,8 @@ IP de la MV
 
 
 Paso 1: parar todos los contenedores de docker
-    sudo docker ps 
-    sudo docker stop id_contenedor
+    docker ps 
+    docker stop id_contenedor
 
 Paso 2: Iniciar los contenedores:
     bbdd. Ejecuta el siguiente comando desde la carpeta padre de basedatos:
@@ -49,4 +49,45 @@ Despliegue despues del punto 6:
 - Debes estar situado en /home/uo277062/IS-2026/SESION02-2
 
 Ejecutar los 3 ficheros
+
+
+Para levantar el servicio:
+
+cd /home/uo277062/IS-2026/SESION02-2
+
+# 1. Crear la red Docker
+docker network create pruebas 2>/dev/null || true
+
+# 2. Borrar contenedores antiguos si los hubiera
+docker rm -f basedatos amigos nginx 2>/dev/null || true
+
+# 3. Levantar la base de datos MySQL
+docker run --name basedatos \
+  -e MYSQL_ROOT_PASSWORD=claveroot \
+  -e MYSQL_USER=amigosuser \
+  -e MYSQL_DATABASE=amigosdb \
+  -e MYSQL_PASSWORD=amigospass \
+  -v "$PWD/basedatos:/var/lib/mysql" \
+  --network pruebas \
+  -d mariadb
+
+# 4. Esperar a que arranque MariaDB
+sleep 5
+
+# 5. Levantar la app Flask
+docker run --name amigos \
+  -e DEPLOYMENT_MODE=production \
+  -e DATABASE_URI=mysql+pymysql://amigosuser:amigospass@basedatos/amigosdb \
+  --network pruebas \
+  -p 5000:5000 \
+  -d amigos:1.0
+
+# 6. Aplicar la migración correcta con la app indicada
+docker exec -it amigos sh -lc 'export FLASK_APP=lanzar:app; flask db upgrade'
+
+# 7. Levantar nginx
+docker run --rm -d --name nginx \
+  --network pruebas \
+  -v "$PWD/sitios_nginx:/etc/nginx/conf.d" \
+  -p 80:80 nginx
 
