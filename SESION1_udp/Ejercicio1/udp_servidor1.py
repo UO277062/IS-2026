@@ -1,8 +1,8 @@
 import socket
 from sys import argv
 
-if len(argv) <1:
-    puerto = 8080 
+if len(argv) < 2:
+    puerto = 9999 
 else:
     puerto = int(argv[1])
 

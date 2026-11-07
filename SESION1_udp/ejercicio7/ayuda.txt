@@ -1,0 +1,18 @@
+docker container prune -> eliminar los contenedores que hayan quedado detenidos
+
+docker network create pruebas -> Crear la red Docker pruebas . Este paso es importante porque los tres servidores tienen que estar conectados a la misma subred.
+
+docker network ls -> comprobar que existe
+
+Desde la carpeta /app lanzar los contenedores:
+    docker run -d --name servidor1 --network pruebas -v "$(pwd):/app" python:3.7 python /app/udp_servidor6_broadcast.py
+    docker run -d --name servidor2 --network pruebas -v "$(pwd):/app" python:3.7 python /app/udp_servidor6_broadcast.py
+    docker run -d --name servidor3 --network pruebas -v "$(pwd):/app" python:3.7 python /app/udp_servidor6_broadcast.py
+
+Para ver la IP en la que se estan ejecutando : docker inspect servidor3 | grep IPAddress
+
+
+Eliminar los servidores -> docker rm servidor1 servidor2 servidor3
+
+Eliminar la red Docker (cuando ya no se utilice) ->
+

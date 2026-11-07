@@ -1,0 +1,12 @@
+Para ejecutar:
+
+    Abrir 2 terminales:
+
+    -> terminal A (servidor):  
+        python3 udp_servidor1.py                -> escucha en el puerto 9999
+        python3 udp_servidor1.py 8080           -> escucha en el puerto 9999
+
+    
+    -> terminal B (cliente):  
+        python3 udp_cliente1.py localhost 9999               -> escucha en el puerto 9999
+        python3 udp_servidor1.py 8080           -> escucha en el puerto 9999

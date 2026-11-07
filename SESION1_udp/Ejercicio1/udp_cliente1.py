@@ -1,9 +1,9 @@
 import socket
 from sys import argv
 
-if len(argv) <2:
+if len(argv) < 3:
     host = "localhost"
-    port = 8080
+    port = 9999 
 
 else:
     host = argv[1]
@@ -13,9 +13,11 @@ else:
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 
-
 linea = ""
-
 while linea != "FIN":
-    linea = input("Ingrese un mensaje ( o FIN para terminar ): ")
-    s.sendto(linea.encode() , (host,port) )
+    linea = input("Ingrese un mensaje (o FIN para terminar): ")
+
+    if linea != "FIN":
+        s.sendto(linea.encode(), (host, port))
+
+s.close()
