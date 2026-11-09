@@ -1,0 +1,8 @@
+Para lanzar este proyecto:
+
+1. Parar los contenedores de nginx
+2. Situarse en ell directorio: /home/uo277062/IS-2026/SESION2/html
+
+3. Lanzar docker run -d --name nginx -p 80:80 -v $(pwd):/usr/share/nginx/html nginx
+
+4. Conectarse a http://IP_DE_TU_UBUNTU/

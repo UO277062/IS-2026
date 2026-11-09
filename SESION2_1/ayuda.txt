@@ -1,3 +1,15 @@
+Para comprobar qué puertos TCP tiene abiertos nuestra máquina:
+    sudo netstat -4tln
+    sudo netstat -4tan
+    sudo lsof -i4 -n -P
+
+Para ver el estado de nginx:
+    systemctl status nginx
+
+Detén nginx y desinstálalo con los comandos siguiente
+
+
+
 Para activar el entorno virtual:
     source ~/flaskenv/bin/activate
 
