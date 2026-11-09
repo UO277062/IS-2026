@@ -9,7 +9,7 @@ sudo docker run --name basedatos \
 sudo docker run --name amigos \
    -e DEPLOYMENT_MODE=production \
    -e DATABASE_URI=mysql+pymysql://amigosuser:amigospass@basedatos/amigosdb \
-   --rm -d --network pruebas amigos:1.0 \
+   --rm -d --network pruebas amigos:3.0 \
 
 sudo docker run --rm -d --network pruebas --name nginx \
     -v $(pwd)/sitios_nginx:/etc/nginx/conf.d \

@@ -1,0 +1,11 @@
+Para reconstrir la imagen de amigos:
+Desde ~/IS-2026/SESION2_3, reconstruye la imagen y recrea el contenedor amigos para que use la versión nueva:
+
+sudo docker build -t amigos:3.0 ./amigos
+
+sudo docker stop amigos
+
+sudo docker run --name amigos \
+  -e DEPLOYMENT_MODE=production \
+  -e DATABASE_URI=mysql+pymysql://amigosuser:amigospass@basedatos/amigosdb \
+  --rm -d --network pruebas amigos:3.0
